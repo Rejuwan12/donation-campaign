@@ -8,7 +8,9 @@ const MainLayout = () => {
 
 
        <Navbar/>
+       <div className="py-7">
        <Outlet/>
+       </div>
     
 
 
