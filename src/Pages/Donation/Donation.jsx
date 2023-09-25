@@ -9,8 +9,9 @@ const Donation = () => {
     const [donations, setDonations] = useState([]);
 
     const [noFound, setNoFound] = useState("");
+     
+    const [show, setShow] = useState(false)
    
-
     useEffect(()=>{
         const donationItems = JSON.parse(localStorage.getItem('donation'));
 
@@ -30,10 +31,17 @@ const Donation = () => {
          { 
           noFound ? <p className="h-[80vh] flex justify-center items-center">No Data Found</p> : <div>
 
-            <div className="gird grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+            <div className="grid grid-cols-2 gap-5 p-4 items-center ml-14">
                 {
-                    donations.map(card => <DonationCard key={card.id} card={card}/> )
+                   show ?  donations.map(card => <DonationCard key={card.id} card={card}/>) 
+                   : 
+                    donations.slice(0,4).map(card => <DonationCard key={card.id} card={card}/>)
                 }
+            </div>
+            <div className="flex justify-center items-center">
+           {
+            donations.length > 4 &&  <button onClick={() => setShow(!show)} className="btn btn primary text-[#FFF] bg-[#009444] ">{ show ? 'See Less' : 'Show More'}</button>
+           }
             </div>
           </div>
          }
