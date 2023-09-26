@@ -5,9 +5,9 @@ import Cards from "../../components/Cards/Cards";
 
 const Home = () => {
     const cards = useLoaderData();
-    // console.log(cards);
+  
     return (
-        <div>
+        <div className="max-w-screen-lg mx-auto overflow-x-hidden">
             <Banner/>
             <Cards cards={cards}/>
         </div>

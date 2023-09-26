@@ -25,7 +25,7 @@ const Donation = () => {
        }
     },[])
 
-    console.log(donations);
+    
     return (
         <div>
          { 
@@ -40,7 +40,7 @@ const Donation = () => {
             </div>
             <div className="flex justify-center items-center">
            {
-            donations.length > 4 &&  <button onClick={() => setShow(!show)} className="btn btn primary text-[#FFF] bg-[#009444] ">{ show ? 'See Less' : 'Show More'}</button>
+            donations.length > 4 &&  <button onClick={() => setShow(!show)} className="btn btn-primary text-[#FFF] bg-[#009444] ">{ show ? 'See Less' : 'See All'}</button>
            }
             </div>
           </div>

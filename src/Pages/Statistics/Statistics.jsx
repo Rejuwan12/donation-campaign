@@ -1,18 +1,56 @@
 
 
-const Statistics = () => {
-    return (
-        <div className="hero bg-base-200 mt-8">
-  <div className="hero-content flex-col lg:flex-row-reverse">
-    <img src="/images/stock/photo-1635805737707-575885ab0820.jpg" className="max-w-sm rounded-lg shadow-2xl" />
-    <div>
-      <h1 className="text-5xl font-bold">Box Office News!</h1>
-      <p className="py-6">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
-      <button className="btn btn-primary">Statistics</button>
-    </div>
-  </div>
-</div>
-    );
-};
+import  { PureComponent } from 'react';
+import { PieChart, Pie, Cell, ResponsiveContainer, Legend } from 'recharts';
 
-export default Statistics;
+const CONSTANT_VALUE = 12; 
+const LOCAL_STORAGE_KEY = 'donation'; 
+
+const COLORS = ['#FF444A', '#00C49F']; 
+
+export default class Statistics extends PureComponent {
+  constructor(props) {
+    super(props);
+
+ 
+    this.state = {
+      changingValue: JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY)) || [],
+    };
+  }
+
+  render() {
+
+    const changingValueLength = this.state.changingValue ? this.state.changingValue.length : 0;
+    const constantValueDegree = ((CONSTANT_VALUE - changingValueLength) * 30).toFixed(2);
+    const changingValueDegree = (changingValueLength * 30).toFixed(2);
+
+ 
+    const data = [
+      { name: 'Total Donation', value: parseFloat(constantValueDegree) },
+      { name: 'Your Donation', value: parseFloat(changingValueDegree) },
+    ];
+
+    return (
+      <div>
+        <ResponsiveContainer width="100%" height={400}>
+          <PieChart width={400} height={400}>
+            <Pie
+              data={data}
+              cx="50%"
+              cy="50%"
+              labelLine={false}
+              outerRadius={80}
+              fill="#8884d8"
+              dataKey="value"
+            >
+              {data.map((entry, index) => (
+                <Cell key={`cell-${index}`} fill={COLORS[index]} />
+              ))}
+            </Pie>
+            <Legend verticalAlign="bottom" height={36} />
+          </PieChart>
+        </ResponsiveContainer>
+      </div>
+    );
+  }
+}
