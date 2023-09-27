@@ -44,13 +44,14 @@ const SingleCardShow = ({card}) => {
             bg-base-100 shadow-xl">
   <div>
   <figure className='relative '>
-    <div className='bg-black absolute w-full h-24 top-[500px]'>
+    <div className='bg-black absolute w-full h-24 lg:top-[500px] 
+    top-[220px]'>
      
     </div>
-    <img  className="w-full h-[590px] bg-black opacity-60 " src={thumbnail} alt="Shoes" />
+    <img  className="w-full lg:h-[590px] h-[300px] bg-black opacity-60 " src={thumbnail} alt="Shoes" />
     </figure>
 
-  <button onClick={handleAddDonation} style={{background: button_bg_color , text:btn_color }}  className="btn btn-primary text-[#FFF] absolute top-[520px] left-8 border-none   ">Donate ${price}</button>
+  <button onClick={handleAddDonation} style={{background: button_bg_color , text:btn_color }}  className="btn btn-primary text-[#FFF] absolute lg:top-[520px] top-[238px] left-8 border-none   ">Donate ${price}</button>
   </div>
   <div className="card-body">
     <h2 className="card-title text-4xl font-extrabold">{title}</h2>

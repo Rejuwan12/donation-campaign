@@ -1,5 +1,3 @@
-
-
 import  { PureComponent } from 'react';
 import { PieChart, Pie, Cell, ResponsiveContainer, Legend } from 'recharts';
 
@@ -12,19 +10,19 @@ export default class Statistics extends PureComponent {
   constructor(props) {
     super(props);
 
- 
+   
     this.state = {
       changingValue: JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY)) || [],
     };
   }
 
   render() {
-
+  
     const changingValueLength = this.state.changingValue ? this.state.changingValue.length : 0;
     const constantValueDegree = ((CONSTANT_VALUE - changingValueLength) * 30).toFixed(2);
     const changingValueDegree = (changingValueLength * 30).toFixed(2);
 
- 
+  
     const data = [
       { name: 'Total Donation', value: parseFloat(constantValueDegree) },
       { name: 'Your Donation', value: parseFloat(changingValueDegree) },

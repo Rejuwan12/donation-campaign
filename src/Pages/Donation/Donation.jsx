@@ -1,6 +1,4 @@
 import { useEffect, useState } from "react";
-
-
 import DonationCard from "./DonationCard";
 
 
@@ -31,7 +29,7 @@ const Donation = () => {
          { 
           noFound ? <p className="h-[80vh] flex justify-center items-center">No Data Found</p> : <div>
 
-            <div className="grid grid-cols-2 gap-5 p-4 items-center ml-14">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2  gap-5 p-4 items-center lg:ml-14">
                 {
                    show ?  donations.map(card => <DonationCard key={card.id} card={card}/>) 
                    : 

@@ -7,10 +7,10 @@ const DonationCard = ({card}) => {
     return (
         <div>
 
-  <div style={{background:card_bg_color}} className="card card-side  w-[450px] h-[220px]  bg-base-100 shadow-xl">
-  <figure><img className="w-full h-[220px]" src={thumbnail} alt="Movie"/></figure>
+  <div style={{background:card_bg_color}} className="card card-side  lg:w-[450px] w-[330px] h-[240px] lg:h-[220px]  bg-base-100 shadow-xl">
+  <figure><img className=" w-full h-[220px]" src={thumbnail} alt="Movie"/></figure>
   <div className="card-body">
-  <p style={{background: category_bg_color}} className='w-16 flex justify-center items-center'>{category}</p>
+  <p style={{background: category_bg_color}} className='w-[100px] flex justify-center items-center'>{category}</p>
    <h2 className="card-title ">
         {title}
     </h2>
