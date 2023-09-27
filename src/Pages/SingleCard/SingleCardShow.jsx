@@ -1,67 +1,65 @@
+import  { PureComponent } from 'react';
+import { PieChart, Pie, Cell, ResponsiveContainer, Legend, Label } from 'recharts';
 
-import swal from 'sweetalert';
+const CONSTANT_VALUE = 12;
+const LOCAL_STORAGE_KEY = 'donation';
 
-const SingleCardShow = ({card}) => {
+const COLORS = ['#FF444A', '#00C49F'];
 
-    const {id,title,thumbnail,description,price,button_bg_color,btn_color } = card;
+export default class Statistics extends PureComponent {
+  constructor(props) {
+    super(props);
 
-    const handleAddDonation= ()=>{
+    this.state = {
+      changingValue: JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY)) || [],
+    };
+  }
 
-        const donationArray = [];
+  render() {
+    const changingValueLength = this.state.changingValue ? this.state.changingValue.length : 0;
+    const constantValueDegree = ((CONSTANT_VALUE - changingValueLength) * 30).toFixed(2);
+    const changingValueDegree = (changingValueLength * 30).toFixed(2);
 
-        const donationItems = JSON.parse(localStorage.getItem('donation'))
+    const data = [
+      { name: 'Total Donation', value: parseFloat(constantValueDegree) },
+      { name: 'Your Donation', value: parseFloat(changingValueDegree) },
+    ];
 
-        if(!donationItems){
-            donationArray.push(card)
-            localStorage.setItem('donation', JSON.stringify(donationArray))
-            swal("Good job!", "Donation Added!", "success");
-        }
+    // Calculate percentages
+    const totalValue = data.reduce((total, entry) => total + entry.value, 0);
+    const dataWithPercentage = data.map((entry) => ({
+      name: entry.name,
+      value: entry.value,
+      percentage: ((entry.value / totalValue) * 100).toFixed(2),
+    }));
 
-        else {
-
-           const isExit = donationItems.find(card => card.id == id)
-           
-
-           if(!isExit){
-
-            donationArray.push(...donationItems, card)
-            localStorage.setItem('donation', JSON.stringify(donationArray))
-            swal("Good job!","Donation Added!", "success");
- 
-           }
-           else{
-            swal("Error!","No Duplicate!", "error");
-           }
-
-
-
-        }
-    }
     return (
-        <div>
-             <div className='max-w-screen-lg mx-auto' >
-           <div className="card card-compact h-[50vh] w-full
-            bg-base-100 shadow-xl">
-  <div>
-  <figure className='relative '>
-    <div className='bg-black absolute w-full h-24 lg:top-[500px] 
-    top-[220px]'>
-     
-    </div>
-    <img  className="w-full lg:h-[590px] h-[300px] bg-black opacity-60 " src={thumbnail} alt="Shoes" />
-    </figure>
-
-  <button onClick={handleAddDonation} style={{background: button_bg_color , text:btn_color }}  className="btn btn-primary text-[#FFF] absolute lg:top-[520px] top-[238px] left-8 border-none   ">Donate ${price}</button>
-  </div>
-  <div className="card-body">
-    <h2 className="card-title text-4xl font-extrabold">{title}</h2>
-    <p className="font-none">{description}</p>
-    
-  </div>
-</div>
-        </div>
-        </div>
+      <div>
+        <ResponsiveContainer width="100%" height={400}>
+          <PieChart width={400} height={400}>
+            <Pie
+              data={dataWithPercentage}
+              cx="50%"
+              cy="50%"
+              labelLine={false}
+              outerRadius={80}
+              fill="#8884d8"
+              dataKey="value"
+            >
+              {dataWithPercentage.map((entry, index) => (
+                <Cell key={`cell-${index}`} fill={COLORS[index]} />
+              ))}
+              <Label
+                valueKey="percentage"
+                position="center"
+                content={({ value }) => `${value}%`}
+                fill="#000"
+              />
+            </Pie>
+            <Legend verticalAlign="bottom" height={36} />
+          </PieChart>
+        </ResponsiveContainer>
+      </div>
     );
-};
-
-export default SingleCardShow;
+  }
+}

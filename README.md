@@ -1,8 +1,17 @@
-# React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Add at least 3 Project features
 
-Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+* 1.Search Section
+
+<p>
+If you search by typing the category name of the card here, all the cards of that category will show.</p>
+
+ * 2.Card Section 
+
+<p>If you click on the card, it will be shown in the form of details. And from there on clicking on the donate button the donated money and card is saved on the donation page.</p>
+
+* 3. PieChart Section
+
+ <p>The total amount donated from the card will be shown as a chart on the stats page.</p>
+
