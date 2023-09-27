@@ -13,5 +13,5 @@ If you search by typing the category name of the card here, all the cards of tha
 
 *  3 - PieChart Section
 
- <p>The total amount donated from the card will be shown as a chart on the stats page.</p>
+ <p>The total amount donated from the card will be shown as a chart on the Statistics page.</p>
 

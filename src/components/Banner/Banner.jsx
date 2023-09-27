@@ -1,9 +1,9 @@
 import { useState } from "react";
-
+import backgroundImage from '../../../images/banner.png'
 const Banner = ({ setCard }) => {
     const [query, setQuery] = useState([])
     const bannerStyle = {
-    backgroundImage: 'url(/public/banner.png)', 
+    backgroundImage: `url(${backgroundImage})`, 
     backgroundSize: 'contain', 
     backgroundRepeat: 'no-repeat', 
     backgroundPosition: 'center',  

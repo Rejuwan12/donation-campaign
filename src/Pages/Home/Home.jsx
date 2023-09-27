@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 
 
 const Home = () => {
-    // const cards = useLoaderData();dev
+    
     const [cards, setCard] = useState([]);
 
     useEffect(()=>{
